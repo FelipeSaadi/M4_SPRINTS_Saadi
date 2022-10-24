@@ -39,7 +39,6 @@ void scan() {
 // valor máximo do vetor assim como a última posição preenchida
 // Evite também que, por acidente, um valor seja escrito em 
 // uma área de memória fora do vetor
-
 void vetor() {
 	int size;
 
@@ -65,9 +64,62 @@ void vetor() {
 // A função deve retornar duas informações: A primeira é a direção 
 // de maior distância ("Direita", "Esquerda", "Frente", "Tras") e a 
 // segunda é esta maior distância.
+void direcao(int* v) {
+	int bigger{ v[0] };
+	int	direction{ 0 };
+
+	for (int i = 0; i < 4; i++) {
+		if (v[i] > bigger) {
+			bigger = v[i];
+			direction = i;
+			i = 0;
+		}
+	}
+
+	switch (direction)
+	{
+	default:
+		cout << "Direita";
+		break;
+	case 1:
+		cout << "Esquerda";
+		break;
+	case 2:
+		cout << "Frente";
+		break;
+	case 3:
+		cout << "Tras";
+		break;
+	}
+
+	cout << " tem a maior distancia com o valor " << bigger << endl;
+}
 
 // 5 - Faça uma função que pergunta ao usuário se ele deseja continuar o mapeamento e 
 // retorna verdadeiro ou falso
+bool decisao() {
+	cout << "Digite 1 para continuar ou 0 para parar:" << endl;
+
+	while (true) {
+		if (_kbhit()) {
+			char key = char(_getch());
+
+			if (key == '1') {
+				cout << "Voce digitou 1, entao iremos prosseguir" << endl;
+				return 1;
+			}
+			else if (key == '0') {
+				cout << "Voce digitou 0, entao iremos parar" << endl;
+				return 0;
+			}
+			else {
+				cout << "Valor informado e invalido, digite 1 para continuar ou 0 para parar" << endl;
+			}
+		}
+	}
+
+
+}
 
 
 // 6 - A função abaixo (que está incompleta) vai "dirigindo" virtualmente um robô 
@@ -127,6 +179,9 @@ int main() {
 	ajuste();
 	scan();
 	vetor();
+	int movVetor[4] = {1, 4, 6, 8};
+	direcao(movVetor);
+	decisao();
 
 	return 0;
 }

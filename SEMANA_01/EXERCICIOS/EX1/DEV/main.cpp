@@ -1,11 +1,37 @@
 #include <iostream>
 #include <string>
+#include <iomanip>
+#include <conio.h>
+using namespace std;
 
 // 1 -  Faça uma função que recebe uma certa medida e ajusta ela percentualmente 
 // entre dois valores mínimo e máximo e retorna esse valor
 
+void ajuste() {
+	int min{ 1 };
+	int max{ 10 };
+	int value{ 0 };
+	
+	cout << "Digite um valor pertecente ao intervalo de 1 a 10:" << endl;
+	cin >> value;
+	cout << fixed << setprecision(1);
+	cout << "O valor digitado ajustado ao intervalo de 1 a 10 resulta em "
+		<< float(value - min) / float(max - min) * 100 <<  "%" << endl;
+}
+
 // 2 - Faça uma função que simule a leitura de um sensor lendo o 
 // valor do teclado ao final a função retorna este valor
+void scan() {
+
+	cout << "Aperte alguma tecla para scanear:" << endl;
+
+	while (true) {
+		if (_kbhit()) {
+			cout << "A tecla digitada foi: " << char(_getch()) << endl;
+			break;
+		}
+	}
+}
 
 // 3 - Faça uma função que armazena uma medida inteira qualquer 
 // em um vetor fornecido. Note que como C não possui vetores 
@@ -14,16 +40,31 @@
 // Evite também que, por acidente, um valor seja escrito em 
 // uma área de memória fora do vetor
 
+void vetor() {
+	int size;
 
+	cout << "Digite o tamanho do vetor: " << endl;
+	cin >> size;
+
+	int* vector = new int(size);
+	cout << "Digite cada numero pertencente ao vetor: " << endl;
+
+	for (int i = 0; i < size; i++) {
+		cin >> vector[i];
+	}
+
+	cout << "Vetor resultante: ";
+	
+	for (int i = 0; i < size; i++) {
+		cout << vector[i] << " ";
+	}
+}
 
 // 4 - Faça uma função que recebe um vetor com 4 posições que contém 
 // o valor da distância de um pequeno robô até cada um dos seus 4 lados.
 // A função deve retornar duas informações: A primeira é a direção 
 // de maior distância ("Direita", "Esquerda", "Frente", "Tras") e a 
 // segunda é esta maior distância.
-
-
-
 
 // 5 - Faça uma função que pergunta ao usuário se ele deseja continuar o mapeamento e 
 // retorna verdadeiro ou falso
@@ -43,45 +84,49 @@
 // enviado pelo usuário. 
 //
 //      Complete a função com a chamada das funções já criadas
-int dirige(int *v,int maxv){
-	int maxVetor = maxv;
-	int *vetorMov = v;
-	int posAtualVetor = 0;
-	int dirigindo = 1;		
-	while(dirigindo){		
-		int medida = /// .. Chame a função de de leitura da medida para a "Direita"
-		medida = converteSensor(medida,0,830);
-		posAtualVetor = // Chame a função para armazenar a medida no vetor
-        ///////////////////////////////////////////////////////////////////////////		
-		// Repita as chamadas acima para a "Esquerda", "Frente", "Tras"
-		// ................
-		///////////////////////////////////////////////////////////////////////////
-		dirigindo = leComando();		
-	}
-	return posAtualVetor;
-}
+//int dirige(int* v, int maxv) {
+//	int maxVetor = maxv;
+//	int* vetorMov = v;
+//	int posAtualVetor = 0;
+//	int dirigindo = 1;
+//	while (dirigindo) {
+//		int medida = /// .. Chame a função de de leitura da medida para a "Direita"
+//			medida = converteSensor(medida, 0, 830);
+//		posAtualVetor = // Chame a função para armazenar a medida no vetor
+//			///////////////////////////////////////////////////////////////////////////		
+//			// Repita as chamadas acima para a "Esquerda", "Frente", "Tras"
+//			// ................
+//			///////////////////////////////////////////////////////////////////////////
+//			dirigindo = leComando();
+//	}
+//	return posAtualVetor;
+//}
 
 
 // O trecho abaixo irá utilizar as funções acima para ler os sensores e o movimento
 // do robô e no final percorrer o vetor e mostrar o movimento a cada direção baseado 
 // na maior distância a cada movimento
-void percorre(int *v,int tamPercorrido){		
-	int *vetorMov = v;
-	int maiorDir = 0;
-	
-	for(int i = 0; i< tamPercorrido; i+=4){
-		char *direcao = direcaoMenorCaminho(&(vetorMov[i]),&maiorDir);
-		printf("Movimentando para %s distancia = %i\n",direcao,maiorDir);
-	}
-}
+//void percorre(int* v, int tamPercorrido) {
+//	int* vetorMov = v;
+//	int maiorDir = 0;
+//
+//	for (int i = 0; i < tamPercorrido; i += 4) {
+//		char* direcao = direcaoMenorCaminho(&(vetorMov[i]), &maiorDir);
+//		printf("Movimentando para %s distancia = %i\n", direcao, maiorDir);
+//	}
+//}
 
-int main(int argc, char** argv) {
-	int maxVetor = 100;
-	int vetorMov[maxVetor*4];
-	int posAtualVet = 0;
-	
-	posAtualVet = dirige(vetorMov,maxVetor);
-	percorre(vetorMov,posAtualVet);
-	
+int main() {
+	//int maxVetor = 100;
+	//int vetorMov[maxVetor * 4];
+	//int posAtualVet = 0;
+
+	//posAtualVet = dirige(vetorMov, maxVetor);
+	//percorre(vetorMov, posAtualVet);
+
+	ajuste();
+	scan();
+	vetor();
+
 	return 0;
 }

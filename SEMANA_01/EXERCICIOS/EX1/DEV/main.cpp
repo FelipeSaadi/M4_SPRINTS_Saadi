@@ -39,23 +39,14 @@ void scan() {
 // valor máximo do vetor assim como a última posição preenchida
 // Evite também que, por acidente, um valor seja escrito em 
 // uma área de memória fora do vetor
-void vetor() {
-	int size;
-
-	cout << "Digite o tamanho do vetor: " << endl;
-	cin >> size;
-
-	int* vector = new int(size);
-	cout << "Digite cada numero pertencente ao vetor: " << endl;
-
-	for (int i = 0; i < size; i++) {
-		cin >> vector[i];
+int* vetor(int* vector, int size, int last, int data) {
+	if (last < size) {
+		cout << "Digite o numero que será adicionado ao vetor: " << endl;
+		vector[last + 1] = data;
+		last += 1;
 	}
-
-	cout << "Vetor resultante: ";
-	
-	for (int i = 0; i < size; i++) {
-		cout << vector[i] << " ";
+	else {
+		return vector;
 	}
 }
 
@@ -64,7 +55,7 @@ void vetor() {
 // A função deve retornar duas informações: A primeira é a direção 
 // de maior distância ("Direita", "Esquerda", "Frente", "Tras") e a 
 // segunda é esta maior distância.
-void direcao(int* v) {
+int direcao(int* v) {
 	int bigger{ v[0] };
 	int	direction{ 0 };
 
@@ -79,20 +70,22 @@ void direcao(int* v) {
 	switch (direction)
 	{
 	default:
-		cout << "Direita";
+		cout << "Direita" << endl;
 		break;
 	case 1:
-		cout << "Esquerda";
+		cout << "Esquerda" << endl;
 		break;
 	case 2:
-		cout << "Frente";
+		cout << "Frente" << endl;
 		break;
 	case 3:
-		cout << "Tras";
+		cout << "Tras" << endl;
 		break;
 	}
 
-	cout << " tem a maior distancia com o valor " << bigger << endl;
+	return direction;
+
+	//cout << " tem a maior distancia com o valor " << bigger << endl;
 }
 
 // 5 - Faça uma função que pergunta ao usuário se ele deseja continuar o mapeamento e 
@@ -136,52 +129,39 @@ bool decisao() {
 // enviado pelo usuário. 
 //
 //      Complete a função com a chamada das funções já criadas
-//int dirige(int* v, int maxv) {
-//	int maxVetor = maxv;
-//	int* vetorMov = v;
-//	int posAtualVetor = 0;
-//	int dirigindo = 1;
-//	while (dirigindo) {
-//		int medida = /// .. Chame a função de de leitura da medida para a "Direita"
-//			medida = converteSensor(medida, 0, 830);
-//		posAtualVetor = // Chame a função para armazenar a medida no vetor
-//			///////////////////////////////////////////////////////////////////////////		
-//			// Repita as chamadas acima para a "Esquerda", "Frente", "Tras"
-//			// ................
-//			///////////////////////////////////////////////////////////////////////////
-//			dirigindo = leComando();
-//	}
-//	return posAtualVetor;
-//}
+void dirige(int* v, int maxv) {
+	int maxVetor = maxv;
+	int* vetorMov = v;
+	int posAtualVetor = 0;
+	int dirigindo = 1;
+	int direction = 0;
 
+	while (dirigindo) {
+		direction = direcao(vetorMov);
 
-// O trecho abaixo irá utilizar as funções acima para ler os sensores e o movimento
-// do robô e no final percorrer o vetor e mostrar o movimento a cada direção baseado 
-// na maior distância a cada movimento
-//void percorre(int* v, int tamPercorrido) {
-//	int* vetorMov = v;
-//	int maiorDir = 0;
-//
-//	for (int i = 0; i < tamPercorrido; i += 4) {
-//		char* direcao = direcaoMenorCaminho(&(vetorMov[i]), &maiorDir);
-//		printf("Movimentando para %s distancia = %i\n", direcao, maiorDir);
-//	}
-//}
+		if (vetorMov[direction] > 0) {
+			vetorMov[direction] -= 1;
+			cout << "direita: " << vetorMov[0] << ", esquerda: " << vetorMov[1] << ", frente: "
+				<< vetorMov[2] << ", tras: " << vetorMov[3] << endl;
+			dirigindo = decisao();
+		}
+
+		if (vetorMov[0] == 0 && vetorMov[1] == 0 && vetorMov[2] == 0 && vetorMov[3] == 0) {
+			dirigindo = 0;
+			cout << "Voce chegou ate o objeto";
+		}
+	}
+}
 
 int main() {
-	//int maxVetor = 100;
-	//int vetorMov[maxVetor * 4];
-	//int posAtualVet = 0;
-
-	//posAtualVet = dirige(vetorMov, maxVetor);
-	//percorre(vetorMov, posAtualVet);
-
-	ajuste();
-	scan();
-	vetor();
+	const int maxVetor = 100;
 	int movVetor[4] = {1, 4, 6, 8};
-	direcao(movVetor);
-	decisao();
+
+	//ajuste();
+	//scan();
+	//vetor();
+	//decisao();
+	dirige(movVetor, maxVetor);
 
 	return 0;
 }

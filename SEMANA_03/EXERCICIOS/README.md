@@ -11,3 +11,7 @@ Além disso:
 A - Utilize a interface IDE 2.0 do Arduino para construcao do codigo
 B - Monte o respectivo projeto e faça o funcionar.
 C - Faça uma versão simulada no Wowki
+
+Link Wokwi: https://wokwi.com/projects/346690386935153234
+
+![Esp32 montado](https://user-images.githubusercontent.com/54749257/199859677-42a4ce08-555b-45c9-8eef-a20cbafc05db.jpeg)

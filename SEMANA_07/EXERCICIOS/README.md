@@ -12,3 +12,5 @@ Como rodar:
 - Passar o script server.ino para um ESP32 e alimentá-lo com energia;
 - Conecetar o notebook/computador na Rede "ESP32", usando a senha "saadi1234";
 - Por fim, rodar o index.html, tendo os arquivos styles.css e script.js na mesma pasta;
+
+![Game ESP32 Board](https://user-images.githubusercontent.com/54749257/205448177-0f90d016-366e-4b22-b2ad-1d6ae61fad90.jpeg)

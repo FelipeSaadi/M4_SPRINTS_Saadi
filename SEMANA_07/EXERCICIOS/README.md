@@ -14,3 +14,8 @@ Como rodar:
 - Por fim, rodar o index.html, tendo os arquivos styles.css e script.js na mesma pasta;
 
 ![Game ESP32 Board](https://user-images.githubusercontent.com/54749257/205448177-0f90d016-366e-4b22-b2ad-1d6ae61fad90.jpeg)
+
+
+----------------------------------------------------------------------
+
+Prototipo no Wokwi: https://wokwi.com/projects/350536067380675154

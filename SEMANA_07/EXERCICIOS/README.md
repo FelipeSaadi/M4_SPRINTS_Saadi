@@ -19,3 +19,5 @@ Como rodar:
 ----------------------------------------------------------------------
 
 Prototipo no Wokwi: https://wokwi.com/projects/350536067380675154
+
+Video no Youtube: https://youtu.be/jK2CNr4F0V4

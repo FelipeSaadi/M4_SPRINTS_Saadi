@@ -6,7 +6,7 @@ const char* ssid = "ESP32";      // Enter SSID here
 const char* password = "saadi1234";  //Enter Password here
 
 /* Put IP Address details */
-IPAddress local_ip( );
+IPAddress local_ip(192, 168, 1, 1);
 IPAddress gateway(192, 168, 1, 1);
 IPAddress subnet(255, 255, 255, 0);
 
